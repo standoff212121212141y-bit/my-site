@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#faf9f6">
+
+<title>nepriv. — Personal Space</title>
+<meta name="description" content="Личное пространство nepriv.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #171715;
+  --muted: #898984;
+  --line: #e8e7e2;
+  --soft: #f1f0eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: #222;
+  color: white;
+}
+
+.container {
+  width: min(100% - 48px, 850px);
+  margin: auto;
+}
+
+/* HEADER */
+
+header {
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.language {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.lang-btn {
+  border: 1px solid transparent;
+  background: transparent;
+  color: #999;
+  font-family: inherit;
+  padding: 8px 11px;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: .25s;
+}
+
+.lang-btn.active {
+  background: #171715;
+  color: white;
+}
+
+/* INTRO */
+
+.intro {
+  padding: 125px 0 110px;
+  animation: appear 1s ease both;
+}
+
+.eyebrow {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 3px;
+}
+
+h1 {
+  font-size: clamp(65px, 12vw, 112px);
+  line-height: .98;
+  letter-spacing: -8px;
+  font-weight: 800;
+  margin: 32px 0;
+}
+
+h1 span { color: #aaa9a2; }
+
+.intro-text {
+  max-width: 510px;
+  font-size: 16px;
+  line-height: 2;
+  color: #777770;
+}
+
+.intro-bottom {
+  margin-top: 42px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8aab85;
+}
+
+/* SECTIONS */
+
+.section {
+  padding: 65px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 38px;
+}
+
+.number {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.section-title {
+  font-size: 29px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+/* ABOUT */
+
+.about-text {
+  font-size: clamp(19px, 3vw, 24px);
+  line-height: 1.9;
+  letter-spacing: -.5px;
+}
+
+.muted { color: #aaa9a2; }
+
+.note {
+  margin-top: 35px;
+  padding: 23px 25px;
+  background: var(--soft);
+  color: #777770;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* INTERESTS */
+
+.interests {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.interest {
+  background: var(--bg);
+  padding: 28px;
+  transition: background .3s;
+}
+
+.interest:hover { background: var(--soft); }
+
+.interest-index {
+  font-size: 11px;
+  color: #aaa9a2;
+  margin-bottom: 25px;
+}
+
+.interest h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.interest p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* QUOTE */
+
+.quote {
+  padding: 65px 0;
+  text-align: center;
+}
+
+.quote p {
+  font-size: clamp(23px, 4vw, 36px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.5;
+}
+
+.quote span {
+  display: block;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* CONTACT */
+
+.contact {
+  background: #191918;
+  color: white;
+  padding: 45px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::after {
+  content: "n.";
+  position: absolute;
+  right: 20px;
+  bottom: -75px;
+  font-size: 220px;
+  font-weight: 800;
+  color: #ffffff08;
+  pointer-events: none;
+}
+
+.contact-label {
+  color: #999;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.contact h2 {
+  font-size: clamp(30px, 6vw, 49px);
+  letter-spacing: -2px;
+  margin: 30px 0 15px;
+}
+
+.contact p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.telegram {
+  display: inline-flex;
+  margin-top: 32px;
+  padding: 14px 20px;
+  border: 1px solid #ffffff40;
+  color: white;
+  font-size: 13px;
+  transition: .3s;
+  position: relative;
+  z-index: 1;
+}
+
+.telegram:hover {
+  background: white;
+  color: #171717;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #999;
+  font-size: 11px;
+}
+
+/* ANIMATIONS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width: 600px) {
+  .container { width: calc(100% - 36px); }
+
+  header { height: 72px; }
+
+  .intro { padding: 95px 0 80px; }
+
+  h1 { letter-spacing: -5px; }
+
+  .section { padding: 48px 0; }
+
+  .section-title { font-size: 24px; }
+
+  .interests { grid-template-columns: 1fr; }
+
+  .interest { padding: 24px; }
+
+  .contact { padding: 30px 23px; }
+
+  footer { font-size: 10px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <a href="#" class="logo">nepriv.</a>
+
+  <div class="language">
+    <button class="lang-btn active" id="ru" onclick="setLanguage('ru')">RU</button>
+    <button class="lang-btn" id="en" onclick="setLanguage('en')">EN</button>
+  </div>
+</header>
+
+<main>
+
+<section class="intro">
+  <div class="eyebrow" data-ru="ЛИЧНОЕ ПРОСТРАНСТВО В СЕТИ"
+       data-en="A PERSONAL SPACE ON THE INTERNET">
+    ЛИЧНОЕ ПРОСТРАНСТВО В СЕТИ
+  </div>
+
+  <h1 data-ru="привет.<br>я nepriv."
+      data-en="hello.<br>I'm nepriv.">
+    привет.<br>я nepriv.
+  </h1>
+
+  <p class="intro-text"
+     data-ru="У каждого есть свой маленький мир. Это мой. Место, где можно просто быть собой, делиться мыслями и оставлять частичку себя в бесконечном интернете."
+     data-en="Everyone has their own little world. This is mine. A place to be yourself, share thoughts and leave a little piece of yourself on the endless internet.">
+    У каждого есть свой маленький мир. Это мой.
+    Место, где можно просто быть собой, делиться
+    мыслями и оставлять частичку себя в интернете.
+  </p>
+
+  <div class="intro-bottom">
+    <span class="dot"></span>
+    <span data-ru="РАД, ЧТО ТЫ ЗДЕСЬ"
+          data-en="GLAD YOU'RE HERE">
+      РАД, ЧТО ТЫ ЗДЕСЬ
+    </span>
+  </div>
+</section>
+
+<section class="section reveal" id="about">
+  <div class="section-head">
+    <div class="number" data-ru="01 / ОБО МНЕ"
+         data-en="01 / ABOUT">
+      01 / ОБО МНЕ
+    </div>
+    <h2 class="section-title" data-ru="обо мне."
+        data-en="about me.">обо мне.</h2>
+  </div>
+
+  <div class="about-text"
+       data-ru="Я человек, которому интересно исследовать этот мир, узнавать новое и создавать что-то своё. <span class='muted'>Люблю атмосферу, красивые детали, интернет-культуру и моменты, которые хочется сохранить.</span> Не стремлюсь казаться кем-то другим. Просто остаюсь собой."
+       data-en="I'm someone who loves exploring the world, discovering new things and creating something of my own. <span class='muted'>I love atmosphere, beautiful details, internet culture and moments worth remembering.</span> I don't try to be someone else. I simply stay myself.">
+    Я человек, которому интересно исследовать этот мир,
+    узнавать новое и создавать что-то своё.
+    <span class="muted">Люблю атмосферу, красивые детали,
+    интернет-культуру и моменты, которые хочется сохранить.</span>
+    Не стремлюсь казаться кем-то другим. Просто остаюсь собой.
+  </div>
+
+  <div class="note"
+       data-ru="Этот сайт — небольшая точка в интернете, которая принадлежит только мне. Здесь нет ничего лишнего. Только то, чем хочется поделиться."
+       data-en="This website is a little corner of the internet that belongs to me. Nothing unnecessary. Just things worth sharing.">
+    Этот сайт — небольшая точка в интернете, которая
+    принадлежит только мне. Здесь нет ничего лишнего.
+    Только то, чем хочется поделиться.
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-head">
+    <div class="number" data-ru="02 / ИНТЕРЕСЫ"
+         data-en="02 / INTERESTS">02 / ИНТЕРЕСЫ</div>
+    <h2 class="section-title" data-ru="мои интересы."
+        data-en="my interests.">мои интересы.</h2>
+  </div>
+
+  <div class="interests">
+
+    <article class="interest">
+      <div class="interest-index">01 —</div>
+      <h3 data-ru="Интернет" data-en="Internet">Интернет</h3>
+      <p data-ru="Цифровой мир, интересные проекты, сайты и необычные идеи."
+         data-en="Digital worlds, interesting projects, websites and unusual ideas.">
+        Цифровой мир, интересные проекты, сайты и необычные идеи.
+      </p>
+    </article>
+
+    <article class="interest">
+      <div class="interest-index">02 —</div>
+      <h3 data-ru="Музыка" data-en="Music">Музыка</h3>
+      <p data-ru="Музыка для разных настроений, вечеров и особенных моментов."
+         data-en="Music for different moods, evenings and special moments.">
+        Музыка для разных настроений, вечеров и особенных моментов.
+      </p>
+    </article>
+
+    <article class="interest">
+      <div class="interest-index">03 —</div>
+      <h3 data-ru="Творчество" data-en="Creativity">Творчество</h3>
+      <p data-ru="Люблю придумывать, экспериментировать и создавать что-то интересное."
+         data-en="I love imagining, experimenting and creating something interesting.">
+        Люблю придумывать, экспериментировать и создавать что-то интересное.
+      </p>
+    </article>
+
+    <article class="interest">
+      <div class="interest-index">04 —</div>
+      <h3 data-ru="Жизнь" data-en="Life">Жизнь</h3>
+      <p data-ru="Новые впечатления, маленькие радости и всё, из чего складывается каждый день."
+         data-en="New experiences, little joys and everything that makes up everyday life.">
+        Новые впечатления, маленькие радости и всё, из чего складывается каждый день.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section class="quote reveal">
+  <p data-ru="«Не обязательно быть<br>понятным каждому.<br>Достаточно быть собой.»"
+     data-en="“You don't have to be<br>understood by everyone.<br>Just be yourself.”">
+    «Не обязательно быть<br>понятным каждому.<br>Достаточно быть собой.»
+  </p>
+  <span>— NEPRIV</span>
+</section>
+
+<section class="section reveal" id="contact">
+  <div class="section-head">
+    <div class="number" data-ru="03 / СВЯЗЬ"
+         data-en="03 / CONTACT">03 / СВЯЗЬ</div>
+    <h2 class="section-title" data-ru="связь."
+        data-en="contact.">связь.</h2>
+  </div>
+
+  <div class="contact">
+    <div class="contact-label"
+         data-ru="ЕСЛИ ЗАХОЧЕШЬ НАПИСАТЬ"
+         data-en="IF YOU'D LIKE TO SAY HELLO">
+      ЕСЛИ ЗАХОЧЕШЬ НАПИСАТЬ
+    </div>
+
+    <h2 data-ru="Будем на связи."
+        data-en="Let's stay in touch.">
+      Будем на связи.
+    </h2>
+
+    <p data-ru="Я есть в Telegram. Можешь написать мне, если захочешь пообщаться."
+       data-en="I'm on Telegram. Feel free to message me if you'd like to talk.">
+      Я есть в Telegram. Можешь написать мне,
+      если захочешь пообщаться.
+    </p>
+
+    <a class="telegram"
+       href="https://t.me/nelazu"
+       target="_blank"
+       rel="noopener noreferrer">
+      Telegram — @nelazu ↗
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>© 2026 nepriv.</span>
+  <span data-ru="СОЗДАНО С ДУШОЙ"
+        data-en="MADE WITH CARE">
+    СОЗДАНО С ДУШОЙ
+  </span>
+</footer>
+
+</div>
+
+<script>
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-ru][data-en]').forEach(el => {
+    el.innerHTML = el.dataset[lang];
+  });
+
+  document.getElementById('ru').classList.toggle('active', lang === 'ru');
+  document.getElementById('en').classList.toggle('active', lang === 'en');
+
+  document.title = lang === 'ru'
+    ? 'nepriv. — личное пространство'
+    : 'nepriv. — Personal Space';
+
+  try {
+    localStorage.setItem('nepriv-language', lang);
+  } catch(e) {}
+}
+
+try {
+  const savedLanguage = localStorage.getItem('nepriv-language');
+  if (savedLanguage === 'en' || savedLanguage === 'ru') {
+    setLanguage(savedLanguage);
+  }
+} catch(e) {}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
